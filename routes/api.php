@@ -27,8 +27,6 @@ Route::middleware('jwt.auth')->group(function() {
     
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::put('/dashboard/reset_password', [DashboardController::class, 'reset_password']);
-    Route::get('/dashboard/wallet', [DashboardController::class, 'read_wallet']);
     Route::put('/dashboard/wallet/spend', [DashboardController::class, 'wallet_spend']);
     Route::put('/dashboard/wallet/save', [DashboardController::class, 'wallet_save']);
-    Route::post('/dashboard/document', [DashboardController::class, 'wallet_save']);
 });

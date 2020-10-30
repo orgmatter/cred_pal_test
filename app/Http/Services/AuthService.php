@@ -25,8 +25,8 @@ class AuthService
             $earn = 1000;
             $remarks = 'This is a referral transaction';
             $wallet = Wallet::find($ref_code->user_id);
-            $new_account_bal = ($wallet->account_bal + $earn);
-            $updateWallet = $wallet->update(['account_bal' => $new_account_bal]);
+            $new_wallet_bal = ($wallet->wallet_bal + $earn);
+            $updateWallet = $wallet->update(['wallet_bal' => $new_wallet_bal]);
             $transaction = $wallet->transactions()->create([
                 'referral_code_id' => $ref_code->id,
                 'type' => 'referral',
