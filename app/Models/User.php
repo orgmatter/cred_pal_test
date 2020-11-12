@@ -12,7 +12,7 @@ use App\Models\Transaction;
 use App\Models\ReferralCode;
 use App\Models\Document;
 
-class User extends Authenticatable implements JWTSubjects
+class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
 
@@ -22,7 +22,8 @@ class User extends Authenticatable implements JWTSubjects
      * @var array
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
         'email',
         'password',
     ];

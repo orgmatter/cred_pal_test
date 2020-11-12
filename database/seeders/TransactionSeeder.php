@@ -19,7 +19,8 @@ class TransactionSeeder extends Seeder
                             ->count(10)
                             ->state(new Sequence(
                                 ['type' => 'transfer'],
-                                ['type' => 'receive']
+                                ['type' => 'receive'],
+                                ['type' => 'referral']
                             ))->create();
     }
 }

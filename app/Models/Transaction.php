@@ -15,7 +15,7 @@ class Transaction extends Model
     protected $fillable = [
         'user_id',
         'wallet_id',
-        'referral_id',
+        'referral_code_id',
         'type',
         'amount',
         'remarks'

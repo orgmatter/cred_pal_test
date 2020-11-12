@@ -1,0 +1,15 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+@import './layouts/lg-desktop';
+@import './layouts/mobile';
+@import './layouts/sm-desktop';
+@import './layouts/tablet';
+@import './layouts/xlg-desktop';

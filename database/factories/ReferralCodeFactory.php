@@ -25,7 +25,7 @@ class ReferralCodeFactory extends Factory
     public function definition()
     {
         return [
-            'user' => User::factory(),
+            'user_id' => User::factory(),
             'code' => Str::random(15),
         ];
     }

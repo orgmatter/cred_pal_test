@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -23,7 +23,7 @@ class AuthController extends Controller
             'firstname' => 'required|string',
             'lastname' => 'required|string',
             'email' => 'required|email',
-            'password' => 'required|password',
+            'password' => 'required|string',
         ]);
 
         if($validate) {
@@ -42,8 +42,8 @@ class AuthController extends Controller
                     'ref_code' => $ref_code,
                 ],
                 'wallet' => [
-                    'account_no' => mt_rand(1000000000, 9999999999),
-                    'account_bal' => '0',
+                    'wallet_address' => mt_rand(1000000000, 9999999999),
+                    'wallet_bal' => '0',
                     'isLimit' => (bool)1,
                 ],
                 'document' => [
@@ -53,6 +53,7 @@ class AuthController extends Controller
             ];
             
             $response = $this->authService->register($credentials);
+            return response()->JSON($response);
         }
     }
 
@@ -60,7 +61,7 @@ class AuthController extends Controller
     {
         $validate = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|password',
+            'password' => 'required|string',
         ]);
 
         if($validate) {
@@ -70,11 +71,7 @@ class AuthController extends Controller
             ];
 
             $response = $this->authService->login($credentials);
+            return response()->JSON($response);
         }
-    }
-
-    public function logout()
-    {
-        
     }
 }

@@ -13,7 +13,7 @@ use App\Models\ReferralCode;
 class AuthService
 {
     
-    public function register(array $crendentials)
+    public function register(array $credentials)
     {
         $user = User::create($credentials['personal']);
         $wallet = $user->wallets()->create($credentials['wallet']);
@@ -24,10 +24,11 @@ class AuthService
         if($ref_code) {
             $earn = 1000;
             $remarks = 'This is a referral transaction';
-            $wallet = Wallet::find($ref_code->user_id);
-            $new_wallet_bal = ($wallet->wallet_bal + $earn);
-            $updateWallet = $wallet->update(['wallet_bal' => $new_wallet_bal]);
-            $transaction = $wallet->transactions()->create([
+            $user_wallet = Wallet::where('user_id', $ref_code->user_id)->first();
+            $new_wallet_bal = ($user_wallet->wallet_bal + $earn);
+            $updateWallet = $user_wallet->update(['wallet_bal' => $new_wallet_bal]);
+            $transaction = $user_wallet->transactions()->create([
+                'user_id' => $ref_code->user_id,
                 'referral_code_id' => $ref_code->id,
                 'type' => 'referral',
                 'amount' => $earn,
@@ -35,7 +36,7 @@ class AuthService
             ]);
         }
 
-        if($user && $wallet && $referral_code && $documet) {
+        if($user && $wallet && $referral_code && $document) {
             $user->password = '';
             return [
                 'msg' => 'You have successfully registered',
@@ -50,14 +51,11 @@ class AuthService
 
     public function login($credentials)
     {
-        $hashed_password = Hash::make($credentials['password']);
-        $user = User::where('password', $hashed_password)->first();
-        $token = JWTAuth::fromUser($user);
+        $token = JWTAuth::attempt($credentials);
         if($token) {
 
             return [
-                'msg' => 'You have successfully registered',
-                'user' => $user,
+                'msg' => 'You have successfully logged in',
                 'isLogin' => true,
                 'token' => $token,
                 'expires' => JWTAuth::factory()->getTTL() * 60,
