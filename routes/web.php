@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{route1}', function () {
+Route::get('/', function () {
+    return view('app');
+})->where('/', '.*');
+
+Route::get('/{any1}', function () {
+    return view('app');
+})->where('/', '.*');
+
+Route::get('/{any1}/{any2}', function () {
+    return view('app');
+})->where('/', '.*');
+
+Route::get('/{any1}/{any2}/{any3}', function () {
     return view('app');
 })->where('/', '.*');
