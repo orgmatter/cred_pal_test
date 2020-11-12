@@ -2,7 +2,7 @@
 <html>
     <title>Cred Pal Test</title>
     <head>
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="https://cred-pal-test.herokuapp.com/css/app.css">
         
     </head>
     <body>
@@ -10,6 +10,7 @@
             <App></App>
         </div>
 
-        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="https://cred-pal-test.herokuapp.com/js/app.js"></script>
     </body>
 </html>
+<!-- {{ asset('css/app.css') }} {{ asset('js/app.js') }} -->
