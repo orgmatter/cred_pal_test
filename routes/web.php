@@ -28,3 +28,7 @@ Route::get('/{any1}/{any2}', function () {
 Route::get('/{any1}/{any2}/{any3}', function () {
     return view('app');
 })->where('/', '.*');
+
+Route::get('/{any1}/{any2}/{any3}/{any4}', function () {
+    return view('app');
+})->where('/', '.*');
