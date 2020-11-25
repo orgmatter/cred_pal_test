@@ -240,6 +240,8 @@ export default {
             })
             .catch(err => {
                 console.log('error: ', err)
+                localStorage.clear();
+                window.location = '/auth/login';
             })
         },
         resetPassword: function() {
